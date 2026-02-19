@@ -1,0 +1,11 @@
+name = "leads-bot"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+# KV для rate limit и защиты от дублей. Раскомментируйте после: wrangler kv:namespace create LEADS_RATE
+# kv_namespaces = [
+#   { binding = "LEADS_RATE", id = "ПОДСТАВЬТЕ_ID_ИЗ_ВЫВОДА_КОМАНДЫ" }
+# ]
+
+# Секреты задаются через wrangler secret put (никогда не коммитьте токен):
+# BOT_TOKEN, ADMIN_CHAT_ID, ALLOWED_ORIGIN (один origin) или ALLOWED_ORIGINS (несколько через запятую)

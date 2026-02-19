@@ -1,5 +1,11 @@
 const CONTACT_URL = "https://t.me/nikmorus";
 
+/**
+ * Endpoint для отправки заявок с форм. Заполняется при деплое.
+ * Никогда не храните BOT_TOKEN на фронте — только на serverless (Worker/Functions).
+ */
+const LEADS_ENDPOINT = "";
+
 const CASES = [
   {
     id: "case-02",
@@ -15,9 +21,12 @@ const CASES = [
     images: [
       "./assets/images/cases/case-02.png",
       "./assets/images/cases/case-02-2.png",
-      "./assets/images/cases/case-02-3.png"
+      "./assets/images/cases/case-02-3.png",
+      "./assets/images/cases/case-02-4.png",
+      "./assets/images/cases/case-02-5.png"
     ],
     caseUrl: "https://nickolascage52.github.io/School_MVP-/",
+    projectUrl: "https://nickolascage52.github.io/School_MVP-/",
     contactUrl: CONTACT_URL,
     sourceUrl: "https://nickolascage52.github.io/School_MVP-/",
     kpis: [
@@ -62,9 +71,12 @@ const CASES = [
     images: [
       "./assets/images/cases/case-03.png",
       "./assets/images/cases/case-03-2.png",
-      "./assets/images/cases/case-03-3.png"
+      "./assets/images/cases/case-03-3.png",
+      "./assets/images/cases/case-03-4.png",
+      "./assets/images/cases/case-03-5.png"
     ],
     caseUrl: "https://t.me/Finance_Technical_Bot",
+    projectUrl: "https://t.me/Finance_Technical_Bot",
     contactUrl: CONTACT_URL,
     kpis: [
       { label: "Экономия времени", value: "18 ч/нед", tone: "main" },
@@ -108,9 +120,12 @@ const CASES = [
     images: [
       "./assets/images/cases/case-04.png",
       "./assets/images/cases/case-04-2.png",
-      "./assets/images/cases/case-04-3.png"
+      "./assets/images/cases/case-04-3.png",
+      "./assets/images/cases/case-04-4.png",
+      "./assets/images/cases/case-04-5.png"
     ],
     caseUrl: "https://xn--80adi5aimmhr.xn--p1ai/",
+    projectUrl: "https://xn--80adi5aimmhr.xn--p1ai/",
     contactUrl: CONTACT_URL,
     kpis: [
       { label: "Конверсия в заявку", value: "4.1%", tone: "main" },
@@ -154,9 +169,12 @@ const CASES = [
     images: [
       "./assets/images/cases/case-05.png",
       "./assets/images/cases/case-05-2.png",
-      "./assets/images/cases/case-05-3.png"
+      "./assets/images/cases/case-05-3.png",
+      "./assets/images/cases/case-05-4.png",
+      "./assets/images/cases/case-05-5.png"
     ],
     caseUrl: "https://nickolascage52.github.io/Site_for_pixart/",
+    projectUrl: "https://nickolascage52.github.io/Site_for_pixart/",
     contactUrl: CONTACT_URL,
     sourceUrl: "https://nickolascage52.github.io/Site_for_pixart/",
     kpis: [
@@ -201,9 +219,12 @@ const CASES = [
     images: [
       "./assets/images/cases/case-06.png",
       "./assets/images/cases/case-06-2.png",
-      "./assets/images/cases/case-06-3.png"
+      "./assets/images/cases/case-06-3.png",
+      "./assets/images/cases/case-06-4.png",
+      "./assets/images/cases/case-06-5.png"
     ],
     caseUrl: "https://nickolascage52.github.io/worldseafood-mvp",
+    projectUrl: "https://nickolascage52.github.io/worldseafood-mvp",
     contactUrl: CONTACT_URL,
     kpis: [
       { label: "Обработка заказа", value: "-44%", tone: "main" },
@@ -235,42 +256,49 @@ const CASES = [
   },
   {
     id: "case-01",
-    slug: "fintech-lead-bot",
-    category: "Финтех / B2B",
-    filter: "fintech",
-    title: "Лид-бот для финтех-сервиса",
+    slug: "cleaning-company-website",
+    category: "Клининг / Услуги",
+    filter: "ecom",
+    title: "Многостраничный сайт для компании по Клинингу",
     summary:
-      "B2B финтех-сервис получал лиды из рекламы и Telegram. Кейс обновляется: сейчас идет доработка сценариев квалификации и интеграций.",
-    goal: "Автоматическая квалификация + запись в CRM",
-    timeline: "В разработке",
-    status: "В разработке",
+      "Нужен понятный многостраничный сайт с пошаговой заявкой на уборку, выбором типа и площади, акциями и отзывами с агрегаторов.",
+    goal: "Конвертящий сайт с заявкой и доверием (отзывы, оффер)",
+    timeline: "10 дней",
+    status: "",
     images: [
       "./assets/images/cases/case-01.png",
       "./assets/images/cases/case-01-2.png",
-      "./assets/images/cases/case-01-3.png"
+      "./assets/images/cases/case-01-3.png",
+      "./assets/images/cases/case-01-4.png",
+      "./assets/images/cases/case-01-5.png"
     ],
     caseUrl: "https://nickolascage52.github.io/KliningCompany_MVP_site/",
+    projectUrl: "https://nickolascage52.github.io/KliningCompany_MVP_site/",
     contactUrl: CONTACT_URL,
-    kpis: [],
+    kpis: [
+      { label: "Конверсия в заявку", value: "4.2%", tone: "main" },
+      { label: "Глубина просмотра", value: "3.1 стр.", tone: "main" },
+      { label: "Доля заявок с таймером", value: "38%", tone: "secondary" }
+    ],
     problem:
-      "Лиды поступают из нескольких каналов, а качество первичной квалификации нестабильно и зависит от ручной обработки.",
+      "Клининговая компания работала без единого сайта: заявки терялись, не было понятного выбора типа уборки и прозрачных условий.",
     solution:
-      "Собираем финальную версию бота с адаптивным скриптом квалификации и маршрутизацией заявок по приоритетам.",
+      "Собрали многостраничный сайт с пошаговой формой (тип уборки, площадь, дата, доп. услуги), блоком спецпредложений с таймером и блоком отзывов с Яндекс, Авито, 2GIS, Profi.ru, Google.",
     result:
-      "После завершения релиза откроем итоговые KPI по качеству квалификации, скорости ответа и доле валидных лидов.",
-    stack: ["Telegram Bot", "CRM", "Webhook Router", "LLM Prompting", "Analytics"],
+      "Единая точка входа для заявок, рост конверсии и прозрачный путь от выбора услуги до заказа обратного звонка.",
+    stack: ["HTML/CSS/JS", "Многошаговая форма", "Таймер акций", "Блок отзывов", "Адаптив"],
     process: [
-      { step: "Discovery", time: "Итерация 1", note: "Сценарии квалификации" },
-      { step: "Prototype", time: "Итерация 2", note: "Ветки диалога и scoring" },
-      { step: "Build", time: "Итерация 3", note: "Интеграции и тесты" },
-      { step: "Launch", time: "Итерация 4", note: "Пилот и пост-оптимизация" }
+      { step: "Discovery", time: "Дни 1–2", note: "Структура страниц и сценарий заявки" },
+      { step: "Prototype", time: "День 3", note: "Шаги формы и блоки доверия" },
+      { step: "Build", time: "Дни 4–8", note: "Верстка, форма, таймер, отзывы" },
+      { step: "Launch", time: "Дни 9–10", note: "Публикация и проверка заявок" }
     ],
     workDone: [
-      "Каркас диалога и business-rules",
-      "Маршрутизация лидов в CRM",
-      "Логика квалификации по сегментам",
-      "Система уведомлений менеджеров",
-      "Тест-кейсы для финального релиза"
+      "Пошаговая форма заявки (тип уборки, площадь, дата, доп. услуги)",
+      "Блок «Специальное предложение» с таймером и кнопкой «Обратный звонок»",
+      "Блок отзывов с агрегаторов (Яндекс, Авито, 2GIS, Profi.ru, Google)",
+      "Разделы «Для частных клиентов» и «Для бизнеса»",
+      "Адаптивная верстка и передача заявок в CRM/менеджеру"
     ]
   }
 ];
@@ -296,7 +324,7 @@ function TopBar() {
       <nav class="topnav" aria-label="Навигация по странице">
         <a href="./#cases">Кейсы</a>
         <a href="./#process">Процесс</a>
-        <a href="${CONTACT_URL}" target="_blank" rel="noopener noreferrer">Контакты</a>
+        <a href="#cta">Контакты</a>
       </nav>
       <a class="btn topbar-cta" href="${CONTACT_URL}" target="_blank" rel="noopener noreferrer">Разобрать задачу</a>
     </header>
@@ -354,12 +382,44 @@ function KpiBadge(kpi) {
   `;
 }
 
+function isExternalUrl(url) {
+  if (!url || url === "#") return false;
+  return /^https?:\/\//i.test(url);
+}
+
+/**
+ * Строго 2 кнопки у каждого кейса:
+ * 1) Подробнее о кейсе (внутренняя страница)
+ * 2) Ссылка на проект (внешняя projectUrl или disabled + «скоро»)
+ */
+function CaseActions(item, options) {
+  const { isDetail = false } = options || {};
+  const projectUrl = item.projectUrl || item.caseUrl || "";
+  const hasProjectLink = isExternalUrl(projectUrl);
+
+  const btnDetail =
+    isDetail
+      ? `<a class="btn" href="./">К списку кейсов</a>`
+      : `<a class="btn btn-primary" href="./?case=${item.slug}" aria-label="Подробнее о кейсе">Подробнее о кейсе</a>`;
+
+  const btnProject = hasProjectLink
+    ? `<a class="btn" href="${projectUrl}" target="_blank" rel="noopener noreferrer" aria-label="Ссылка на проект">Ссылка на проект</a>`
+    : `<span class="btn btn-disabled" aria-disabled="true" title="Скоро">Ссылка на проект <span class="case-soon">скоро</span></span>`;
+
+  return `
+    <div class="case-actions" role="group" aria-label="Действия по кейсу">
+      ${btnDetail}
+      ${btnProject}
+    </div>
+  `;
+}
+
 function CaseCard(item, index) {
   const kpiMarkup = (item.kpis || []).slice(0, 3).map((kpi) => KpiBadge(kpi)).join("");
   const hasKpis = (item.kpis || []).length > 0;
 
   return `
-    <article class="case-card reveal" style="--stagger:${index};" data-category="${item.filter}">
+    <article class="case-card reveal" style="--stagger:${index};" data-category="${item.filter}" data-case-slug="${item.slug}">
       <div class="case-content">
         <div class="row">
           <span class="badge">${item.category}</span>
@@ -379,9 +439,8 @@ function CaseCard(item, index) {
           </div>
         </div>
 
-        <div class="shot">
+        <div class="shot js-gallery-shot" role="button" tabindex="0" data-case-slug="${item.slug}" data-image-index="0" aria-label="Открыть галерею">
           <img src="${item.images[0]}" alt="Скриншот кейса: ${item.title}" loading="lazy" decoding="async" />
-          <div class="shot-placeholder hidden">Скриншот проекта</div>
         </div>
 
         ${
@@ -390,14 +449,7 @@ function CaseCard(item, index) {
             : `<div class="meta-item" style="margin-top:14px;"><div class="meta-label">Статус</div><div class="meta-value">Кейс в разработке, показатели появятся после завершения этапа теста.</div></div>`
         }
 
-        <div class="case-links">
-          <a class="link" href="./?case=${item.slug}">Открыть кейс →</a>
-          ${
-            item.sourceUrl
-              ? `<a class="link" href="${item.sourceUrl}" target="_blank" rel="noopener noreferrer">Исходники →</a>`
-              : ""
-          }
-        </div>
+        ${CaseActions(item, { isDetail: false })}
       </div>
     </article>
   `;
@@ -411,9 +463,8 @@ function CaseDetail(caseItem) {
   const mediaMarkup = caseItem.images
     .map(
       (src, idx) => `
-      <div class="shot shot-detail">
+      <div class="shot shot-detail js-gallery-shot" role="button" tabindex="0" data-case-slug="${caseItem.slug}" data-image-index="${idx}" aria-label="Открыть фото ${idx + 1} из ${caseItem.images.length}">
         <img src="${src}" alt="Медиа ${idx + 1}: ${caseItem.title}" loading="lazy" decoding="async" />
-        <div class="shot-placeholder hidden">Скриншот проекта</div>
       </div>
     `
     )
@@ -443,8 +494,7 @@ function CaseDetail(caseItem) {
         <h1 class="detail-title">${caseItem.title}</h1>
         <p>${caseItem.summary}</p>
         <div class="hero-actions">
-          <a href="${caseItem.contactUrl || "#"}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Связаться</a>
-          <a href="${caseItem.caseUrl}" class="btn" target="_blank" rel="noopener noreferrer">Открыть проект</a>
+          ${CaseActions(caseItem, { isDetail: true })}
         </div>
       </div>
     </section>
@@ -477,8 +527,10 @@ function CaseDetail(caseItem) {
     <section class="section trust">
       <article class="trust-card reveal">
         <h2 class="section-title">Стек / инструменты</h2>
-        <div class="chips">
-          ${caseItem.stack.map((tech) => `<span class="chip">${tech}</span>`).join("")}
+        <div class="detail-chips-wrap">
+          <div class="chips">
+            ${caseItem.stack.map((tech) => `<span class="chip">${tech}</span>`).join("")}
+          </div>
         </div>
       </article>
       <article class="trust-card reveal">
@@ -506,13 +558,13 @@ function CaseDetail(caseItem) {
       </div>
     </section>
 
-    <section class="section detail-nav reveal">
-      <a class="link" href="${prevCase ? `./?case=${prevCase.slug}` : "./"}">${prevCase ? "← Предыдущий кейс" : "← К списку"}</a>
-      <a class="link" href="./">Вернуться ко всем кейсам</a>
-      <a class="link" href="${nextCase ? `./?case=${nextCase.slug}` : "./"}">${nextCase ? "Следующий кейс →" : "К списку →"}</a>
+    <section class="section detail-nav reveal" aria-label="Навигация по кейсам">
+      <a class="link btn-nav" href="${prevCase ? `./?case=${prevCase.slug}` : "./"}">${prevCase ? "← Предыдущий кейс" : "← К списку"}</a>
+      <a class="link btn-nav" href="./">Вернуться ко всем кейсам</a>
+      <a class="link btn-nav" href="${nextCase ? `./?case=${nextCase.slug}` : "./"}">${nextCase ? "Следующий кейс →" : "К списку →"}</a>
     </section>
 
-    ${CTAForm()}
+    ${CTAForm({ caseSlug: caseItem.slug })}
     ${Footer()}
   `;
 }
@@ -578,38 +630,47 @@ function TrustBlock() {
   `;
 }
 
-function CTAForm() {
+/**
+ * Форма заявки: отправка на LEADS_ENDPOINT (serverless). Токен только на бэкенде.
+ * @typedef {{ name: string, contact: string, message: string, source: string, caseSlug?: string, company?: string }} LeadPayload
+ * @typedef {{ ok: boolean }} LeadSuccessResponse
+ */
+function CTAForm(options) {
+  const opts = options || {};
+  const caseSlug = opts.caseSlug || "";
+  const formId = "lead-form-" + (caseSlug || "main");
   return `
     <section class="section cta" id="cta">
       <div class="cta-wrap reveal">
         <div class="cta-grid">
           <div>
             <h2 class="section-title">Обсудим ваш кейс</h2>
-            <p class="section-sub">Напишите задачу и контакт. Вернемся с планом внедрения и сроками.</p>
-            <form class="form" action="#" method="post" novalidate>
+            <p class="section-sub">Напишите задачу и контакт. Вернёмся с планом внедрения и сроками.</p>
+            <form class="form js-lead-form" id="${formId}" action="#" method="post" novalidate data-source="cases-site" data-case-slug="${caseSlug}">
               <div class="field">
-                <label for="name">Имя</label>
-                <input id="name" name="name" type="text" placeholder="Как к вам обращаться" required />
+                <label for="${formId}-name">Имя</label>
+                <input id="${formId}-name" name="name" type="text" placeholder="Как к вам обращаться (2–60 символов)" required minlength="2" maxlength="60" autocomplete="name" />
               </div>
               <div class="field">
-                <label for="telegram">Telegram</label>
-                <input id="telegram" name="telegram" type="text" placeholder="@username" required />
+                <label for="${formId}-contact">Контакт</label>
+                <input id="${formId}-contact" name="contact" type="text" placeholder="@telegram / телефон / email (3–80 символов)" required minlength="3" maxlength="80" autocomplete="tel" />
               </div>
               <div class="field">
-                <label for="message">Сообщение</label>
-                <textarea id="message" name="message" rows="4" placeholder="Коротко о задаче"></textarea>
+                <label for="${formId}-message">Сообщение</label>
+                <textarea id="${formId}-message" name="message" rows="4" placeholder="Коротко о задаче (10–2000 символов)" minlength="10" maxlength="2000" required></textarea>
               </div>
-              <a class="btn btn-primary pulse" href="${CONTACT_URL}" target="_blank" rel="noopener noreferrer">Заказать услугу</a>
+              <div class="field field-hp" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;">
+                <label for="${formId}-company">Компания</label>
+                <input id="${formId}-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+              </div>
+              <div class="form-status" role="status" aria-live="polite"></div>
+              <button type="submit" class="btn btn-primary pulse js-lead-submit">Отправить заявку</button>
               <p class="disclaimer">Нажимая кнопку, вы соглашаетесь на обработку данных для обратной связи.</p>
             </form>
           </div>
           <aside class="contacts">
             <h3>Контакты</h3>
             <p><a href="${CONTACT_URL}" target="_blank" rel="noopener noreferrer">Telegram</a></p>
-            <p><a href="${CONTACT_URL}" target="_blank" rel="noopener noreferrer">Email / Telegram</a></p>
-            <p><a href="${CONTACT_URL}" target="_blank" rel="noopener noreferrer">Behance / Telegram</a></p>
-            <p><a href="${CONTACT_URL}" target="_blank" rel="noopener noreferrer">Dribbble / Telegram</a></p>
-            <p><a href="${CONTACT_URL}" target="_blank" rel="noopener noreferrer">GitHub / Telegram</a></p>
             <p class="disclaimer">Ответ обычно в течение рабочего дня.</p>
           </aside>
         </div>
@@ -624,13 +685,88 @@ function Footer() {
       <small>Кейсы разработчика Морус Никиты</small>
       <div class="footer-links">
         <a class="link" href="${CONTACT_URL}" target="_blank" rel="noopener noreferrer">Telegram</a>
-        <a class="link" href="${CONTACT_URL}" target="_blank" rel="noopener noreferrer">Email</a>
-        <a class="link" href="${CONTACT_URL}" target="_blank" rel="noopener noreferrer">Behance</a>
-        <a class="link" href="${CONTACT_URL}" target="_blank" rel="noopener noreferrer">Dribbble</a>
-        <a class="link" href="${CONTACT_URL}" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
     </footer>
   `;
+}
+
+// ——— Lead form: использует модуль Leads (assets/js/leads.js), токен только на serverless ———
+const LEAD_SUBMIT_COOLDOWN_MS = 2000;
+
+function setFormState(form, stateName, message) {
+  var statusEl = form.querySelector(".form-status");
+  var submitBtn = form.querySelector(".js-lead-submit");
+  var inputs = form.querySelectorAll("input, textarea");
+  var isDisabled = stateName === "loading";
+  if (statusEl) {
+    statusEl.textContent = message || "";
+    statusEl.className = "form-status form-status--" + stateName;
+  }
+  if (submitBtn) {
+    submitBtn.disabled = isDisabled;
+    submitBtn.textContent = stateName === "loading" ? "Отправка…" : "Отправить заявку";
+  }
+  inputs.forEach(function (el) { el.disabled = isDisabled; });
+}
+
+function isLeadsEndpointConfigured() {
+  return typeof LEADS_ENDPOINT === "string" && LEADS_ENDPOINT.length > 0 && LEADS_ENDPOINT.startsWith("http");
+}
+
+function handleLeadSubmit(form) {
+  if (!window.Leads) {
+    setFormState(form, "error", "Модуль заявок не загружен.");
+    return;
+  }
+  if (!isLeadsEndpointConfigured()) {
+    setFormState(form, "error", "Форма временно недоступна.");
+    if (typeof console !== "undefined" && console.info) {
+      console.info("Чтобы включить форму заявок, задайте LEADS_ENDPOINT в .env и выполните npm run build (см. .env.example и LEADS_BOT_SETUP.md).");
+    }
+    return;
+  }
+  var payload = window.Leads.getPayloadFromForm(form);
+  var clientError = window.Leads.validateLead(payload);
+  if (clientError) {
+    setFormState(form, "error", clientError);
+    return;
+  }
+  setFormState(form, "loading", "");
+  window.Leads.submitLead(LEADS_ENDPOINT, payload).then(function (result) {
+    if (result.ok) {
+      setFormState(form, "success", "Спасибо! Мы свяжемся с вами в ближайшее время.");
+      form.reset();
+      setTimeout(function () { setFormState(form, "idle", ""); }, 4000);
+    } else {
+      var msg = result.error === "not_configured" ? "Форма временно недоступна." : (result.error || "Ошибка отправки. Попробуйте ещё раз.");
+      setFormState(form, "error", msg);
+    }
+  });
+}
+
+function bindLeadForms() {
+  var endpointOk = isLeadsEndpointConfigured();
+  document.querySelectorAll(".js-lead-form").forEach(function (form) {
+    if (form.dataset.leadBound) return;
+    form.dataset.leadBound = "1";
+    var statusEl = form.querySelector(".form-status");
+    var submitBtn = form.querySelector(".js-lead-submit");
+    if (!endpointOk && submitBtn && statusEl) {
+      submitBtn.disabled = true;
+      statusEl.textContent = "Форма временно недоступна.";
+      statusEl.className = "form-status form-status--muted";
+      if (typeof console !== "undefined" && console.info) {
+        console.info("Форма заявок отключена: задайте LEADS_ENDPOINT (см. .env.example и LEADS_BOT_SETUP.md).");
+      }
+    }
+    var cooldown = 0;
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (Date.now() < cooldown) return;
+      cooldown = Date.now() + LEAD_SUBMIT_COOLDOWN_MS;
+      handleLeadSubmit(form);
+    });
+  });
 }
 
 function getFilteredCases() {
@@ -657,6 +793,8 @@ function renderCases() {
   grid.innerHTML = cards;
   bindScreenshotFallback();
   bindCardTilt();
+  bindGalleryLightbox();
+  bindCaseCardClick();
   observeReveal();
 }
 
@@ -674,8 +812,10 @@ function renderPage() {
     `;
     bindScreenshotFallback();
     bindCardTilt();
+    bindGalleryLightbox();
     observeReveal();
     bindDetailParallax();
+    bindLeadForms();
     return;
   }
 
@@ -688,13 +828,14 @@ function renderPage() {
     </section>
     ${HowWeWork()}
     ${TrustBlock()}
-    ${CTAForm()}
+    ${CTAForm({})}
     ${Footer()}
   `;
 
   renderCases();
   bindFilterTabs();
   updateFilterIndicator();
+  bindLeadForms();
 }
 
 function bindFilterTabs() {
@@ -707,6 +848,7 @@ function bindFilterTabs() {
       button.classList.add("is-active");
       updateFilterIndicator();
       renderCases();
+      button.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
     });
   });
 }
@@ -718,33 +860,45 @@ function updateFilterIndicator() {
 
   if (!wrap || !indicator || !active) return;
 
-  const wrapRect = wrap.getBoundingClientRect();
-  const activeRect = active.getBoundingClientRect();
-  const x = activeRect.left - wrapRect.left;
+  const wrapPadding = 8;
+  const x = active.offsetLeft - wrapPadding;
+  const w = active.offsetWidth;
 
-  indicator.style.width = `${activeRect.width}px`;
+  indicator.style.width = `${w}px`;
   indicator.style.transform = `translateX(${x}px)`;
 }
 
 function bindScreenshotFallback() {
-  const screenshots = document.querySelectorAll(".shot");
-
-  screenshots.forEach((shot) => {
+  document.querySelectorAll(".shot").forEach((shot) => {
     const img = shot.querySelector("img");
-    const placeholder = shot.querySelector(".shot-placeholder");
+    if (!img) return;
 
-    if (!img || !placeholder) return;
-
-    const showPlaceholder = () => {
-      img.classList.add("hidden");
-      placeholder.classList.remove("hidden");
+    const hideShot = () => {
+      shot.style.display = "none";
     };
 
-    img.addEventListener("error", showPlaceholder, { once: true });
-
+    img.addEventListener("error", hideShot, { once: true });
     if (img.complete && img.naturalWidth === 0) {
-      showPlaceholder();
+      hideShot();
     }
+  });
+}
+
+function bindCaseCardClick() {
+  document.querySelectorAll(".case-card[data-case-slug]").forEach((card) => {
+    const slug = card.getAttribute("data-case-slug");
+    if (!slug) return;
+
+    card.addEventListener("click", (e) => {
+      if (e.target.closest("a") || e.target.closest("button") || e.target.closest(".case-actions")) {
+        return;
+      }
+      if (e.target.closest(".js-gallery-shot")) {
+        return;
+      }
+      e.preventDefault();
+      window.location.href = "./?case=" + encodeURIComponent(slug);
+    });
   });
 }
 
@@ -809,5 +963,114 @@ function bindDetailParallax() {
   });
 }
 
+// ——— Галерея-лайтбокс: клик по фото → просмотр и переключение внутри кейса ———
+function getLightboxEl() {
+  let el = document.getElementById("galleryLightbox");
+  if (!el) {
+    el = document.createElement("div");
+    el.id = "galleryLightbox";
+    el.className = "gallery-lightbox";
+    el.setAttribute("aria-hidden", "true");
+    el.setAttribute("role", "dialog");
+    el.setAttribute("aria-modal", "true");
+    el.setAttribute("aria-label", "Галерея фото кейса");
+    el.innerHTML = `
+      <button type="button" class="gallery-lightbox-close" aria-label="Закрыть">×</button>
+      <button type="button" class="gallery-lightbox-prev" aria-label="Предыдущее фото">‹</button>
+      <div class="gallery-lightbox-content">
+        <img src="" alt="" />
+      </div>
+      <button type="button" class="gallery-lightbox-next" aria-label="Следующее фото">›</button>
+      <span class="gallery-lightbox-counter" aria-live="polite"></span>
+    `;
+    document.body.appendChild(el);
+  }
+  return el;
+}
+
+function openGalleryLightbox(images, startIndex) {
+  if (!images || !images.length) return;
+  const lb = getLightboxEl();
+  let index = Math.max(0, Math.min(startIndex, images.length - 1));
+  const imgEl = lb.querySelector(".gallery-lightbox-content img");
+  const counterEl = lb.querySelector(".gallery-lightbox-counter");
+
+  function show() {
+    imgEl.src = images[index];
+    imgEl.alt = "Фото " + (index + 1) + " из " + images.length;
+    if (counterEl) counterEl.textContent = index + 1 + " / " + images.length;
+  }
+
+  function goPrev() {
+    index = index <= 0 ? images.length - 1 : index - 1;
+    show();
+  }
+
+  function goNext() {
+    index = index >= images.length - 1 ? 0 : index + 1;
+    show();
+  }
+
+  function close() {
+    lb.classList.remove("is-open");
+    lb.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    document.removeEventListener("keydown", onKeydown);
+  }
+
+  function onKeydown(e) {
+    if (e.key === "Escape") close();
+    if (e.key === "ArrowLeft") goPrev();
+    if (e.key === "ArrowRight") goNext();
+  }
+
+  lb.querySelector(".gallery-lightbox-close").onclick = close;
+  lb.querySelector(".gallery-lightbox-prev").onclick = goPrev;
+  lb.querySelector(".gallery-lightbox-next").onclick = goNext;
+  lb.onclick = function (e) {
+    if (e.target === lb) close();
+  };
+
+  document.addEventListener("keydown", onKeydown);
+  document.body.style.overflow = "hidden";
+  lb.classList.add("is-open");
+  lb.setAttribute("aria-hidden", "false");
+  show();
+}
+
+function bindGalleryLightbox() {
+  document.querySelectorAll(".js-gallery-shot").forEach((shot) => {
+    if (shot.dataset.galleryBound) return;
+    shot.dataset.galleryBound = "1";
+    shot.style.cursor = "pointer";
+
+    function open() {
+      const slug = shot.dataset.caseSlug;
+      const index = parseInt(shot.dataset.imageIndex, 10) || 0;
+      const caseItem = CASES.find((c) => c.slug === slug);
+      if (caseItem && caseItem.images && caseItem.images.length) {
+        openGalleryLightbox(caseItem.images, index);
+      }
+    }
+
+    shot.addEventListener("click", (e) => {
+      if (e.target.closest("a")) return;
+      e.preventDefault();
+      open();
+    });
+    shot.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        open();
+      }
+    });
+  });
+}
+
 window.addEventListener("resize", updateFilterIndicator);
-window.addEventListener("DOMContentLoaded", renderPage);
+window.addEventListener("DOMContentLoaded", () => {
+  renderPage();
+  requestAnimationFrame(() => {
+    updateFilterIndicator();
+  });
+});

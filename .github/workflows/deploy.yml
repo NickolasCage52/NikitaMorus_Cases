@@ -32,6 +32,8 @@ jobs:
 
       - name: Build site
         run: npm run build
+        env:
+          LEADS_ENDPOINT: ${{ secrets.LEADS_ENDPOINT }}
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

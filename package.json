@@ -7,6 +7,9 @@
     "build": "node scripts/build.js",
     "dev": "node server.js --root dist",
     "start": "node server.js --root dist",
-    "preview": "node server.js --root dist"
+    "preview": "npm run build && node server.js --root dist"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1"
   }
 }

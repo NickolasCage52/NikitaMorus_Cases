@@ -1,0 +1,8 @@
+# Секреты — никогда не коммитить
+.env
+worker/.env
+*.env.local
+
+# Сборка и зависимости
+node_modules/
+dist/

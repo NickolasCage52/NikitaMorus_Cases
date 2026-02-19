@@ -1,6 +1,10 @@
 const fs = require("fs");
 const path = require("path");
 
+try {
+  require("dotenv").config({ path: path.resolve(__dirname, "..", ".env") });
+} catch (_) {}
+
 const ROOT = path.resolve(__dirname, "..");
 const DIST = path.join(ROOT, "dist");
 const ENTRIES = ["index.html", "assets"];
@@ -66,6 +70,15 @@ function build() {
   const distIndexPath = path.join(DIST, "index.html");
   const dist404Path = path.join(DIST, "404.html");
   fs.copyFileSync(distIndexPath, dist404Path);
+
+  const casesJsPath = path.join(DIST, "assets", "js", "cases.js");
+  if (fs.existsSync(casesJsPath)) {
+    let content = fs.readFileSync(casesJsPath, "utf8");
+    const endpoint = process.env.LEADS_ENDPOINT || "";
+    const replacement = "const LEADS_ENDPOINT = " + JSON.stringify(endpoint) + ";";
+    content = content.replace(/const\s+LEADS_ENDPOINT\s*=\s*["'][^"']*["']\s*;/, replacement);
+    fs.writeFileSync(casesJsPath, content, "utf8");
+  }
 
   console.log("[build] Build completed successfully.");
   console.log(`[build] Output directory: ${DIST}`);
