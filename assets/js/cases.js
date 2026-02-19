@@ -275,11 +275,7 @@ const CASES = [
     caseUrl: "https://nickolascage52.github.io/KliningCompany_MVP_site/",
     projectUrl: "https://nickolascage52.github.io/KliningCompany_MVP_site/",
     contactUrl: CONTACT_URL,
-    kpis: [
-      { label: "Конверсия в заявку", value: "4.2%", tone: "main" },
-      { label: "Глубина просмотра", value: "3.1 стр.", tone: "main" },
-      { label: "Доля заявок с таймером", value: "38%", tone: "secondary" }
-    ],
+    kpis: [],
     problem:
       "Клининговая компания работала без единого сайта: заявки терялись, не было понятного выбора типа уборки и прозрачных условий.",
     solution:
@@ -440,7 +436,7 @@ function CaseCard(item, index) {
         </div>
 
         <div class="shot js-gallery-shot" role="button" tabindex="0" data-case-slug="${item.slug}" data-image-index="0" aria-label="Открыть галерею">
-          <img src="${item.images[0]}" alt="Скриншот кейса: ${item.title}" loading="lazy" decoding="async" />
+          <img src="${getDisplayImages(item)[0]}" alt="Скриншот кейса: ${item.title}" loading="lazy" decoding="async" />
         </div>
 
         ${
@@ -456,14 +452,16 @@ function CaseCard(item, index) {
 }
 
 function CaseDetail(caseItem) {
-  const caseIndex = CASES.findIndex((item) => item.slug === caseItem.slug);
-  const prevCase = caseIndex > 0 ? CASES[caseIndex - 1] : null;
-  const nextCase = caseIndex < CASES.length - 1 ? CASES[caseIndex + 1] : null;
+  const list = casesWithPhotos();
+  const caseIndex = list.findIndex((item) => item.slug === caseItem.slug);
+  const prevCase = caseIndex > 0 ? list[caseIndex - 1] : null;
+  const nextCase = caseIndex >= 0 && caseIndex < list.length - 1 ? list[caseIndex + 1] : null;
 
-  const mediaMarkup = caseItem.images
+  const displayImages = getDisplayImages(caseItem);
+  const mediaMarkup = displayImages
     .map(
       (src, idx) => `
-      <div class="shot shot-detail js-gallery-shot" role="button" tabindex="0" data-case-slug="${caseItem.slug}" data-image-index="${idx}" aria-label="Открыть фото ${idx + 1} из ${caseItem.images.length}">
+      <div class="shot shot-detail js-gallery-shot" role="button" tabindex="0" data-case-slug="${caseItem.slug}" data-image-index="${idx}" aria-label="Открыть фото ${idx + 1} из ${displayImages.length}">
         <img src="${src}" alt="Медиа ${idx + 1}: ${caseItem.title}" loading="lazy" decoding="async" />
       </div>
     `
@@ -769,12 +767,28 @@ function bindLeadForms() {
   });
 }
 
-function getFilteredCases() {
-  if (state.activeFilter === "all") {
-    return CASES;
-  }
+/** Кейсы, у которых есть хотя бы одно фото (показываем только такие карточки) */
+function casesWithPhotos() {
+  return CASES.filter((item) => item.images && item.images.length > 0);
+}
 
-  return CASES.filter((item) => item.filter === state.activeFilter);
+/**
+ * В каждом кейсе показываем только 3 фото: 1-е, 4-е и 5-е (2-е и 3-е блоки убраны — пустые).
+ */
+function getDisplayImages(item) {
+  var images = item.images || [];
+  if (images.length >= 5) {
+    return [images[0], images[3], images[4]];
+  }
+  return images.slice(0, 3);
+}
+
+function getFilteredCases() {
+  const withPhotos = casesWithPhotos();
+  if (state.activeFilter === "all") {
+    return withPhotos;
+  }
+  return withPhotos.filter((item) => item.filter === state.activeFilter);
 }
 
 function parseCaseSlug() {
@@ -804,8 +818,9 @@ function renderPage() {
 
   state.currentCaseSlug = parseCaseSlug();
   const currentCase = CASES.find((item) => item.slug === state.currentCaseSlug);
+  const hasPhotos = currentCase && currentCase.images && currentCase.images.length > 0;
 
-  if (currentCase) {
+  if (currentCase && hasPhotos) {
     app.innerHTML = `
       ${TopBar()}
       ${CaseDetail(currentCase)}
@@ -988,26 +1003,64 @@ function getLightboxEl() {
   return el;
 }
 
+function getDocumentBaseUrl() {
+  var origin = window.location.origin;
+  var pathname = window.location.pathname || "/";
+  var basePath = /\/$/.test(pathname) ? pathname : pathname + "/";
+  return origin + basePath;
+}
+
+function resolveGalleryImgSrc(path) {
+  if (!path || typeof path !== "string") return "";
+  var trimmed = path.trim();
+  if (!trimmed) return "";
+  try {
+    return new URL(trimmed, getDocumentBaseUrl()).href;
+  } catch {
+    return trimmed;
+  }
+}
+
 function openGalleryLightbox(images, startIndex) {
   if (!images || !images.length) return;
-  const lb = getLightboxEl();
-  let index = Math.max(0, Math.min(startIndex, images.length - 1));
-  const imgEl = lb.querySelector(".gallery-lightbox-content img");
-  const counterEl = lb.querySelector(".gallery-lightbox-counter");
+  var resolvedImages = images.map(function (path) { return resolveGalleryImgSrc(path); });
+  var lb = getLightboxEl();
+  var index = Math.max(0, Math.min(startIndex, resolvedImages.length - 1));
+  var imgEl = lb.querySelector(".gallery-lightbox-content img");
+  var counterEl = lb.querySelector(".gallery-lightbox-counter");
+  var i;
+  for (i = 0; i < resolvedImages.length; i++) {
+    (function (src) {
+      var preload = new Image();
+      preload.src = src;
+    })(resolvedImages[i]);
+  }
 
   function show() {
-    imgEl.src = images[index];
-    imgEl.alt = "Фото " + (index + 1) + " из " + images.length;
-    if (counterEl) counterEl.textContent = index + 1 + " / " + images.length;
+    var src = resolvedImages[index];
+    if (counterEl) counterEl.textContent = index + 1 + " / " + resolvedImages.length;
+    imgEl.setAttribute("alt", "Фото " + (index + 1) + " из " + resolvedImages.length);
+    imgEl.loading = "eager";
+    imgEl.removeAttribute("src");
+    imgEl.style.visibility = "hidden";
+    imgEl.onerror = function () {
+      imgEl.style.visibility = "visible";
+      imgEl.onerror = null;
+    };
+    imgEl.onload = function () {
+      imgEl.style.visibility = "visible";
+      imgEl.onload = null;
+    };
+    imgEl.setAttribute("src", src);
   }
 
   function goPrev() {
-    index = index <= 0 ? images.length - 1 : index - 1;
+    index = index <= 0 ? resolvedImages.length - 1 : index - 1;
     show();
   }
 
   function goNext() {
-    index = index >= images.length - 1 ? 0 : index + 1;
+    index = index >= resolvedImages.length - 1 ? 0 : index + 1;
     show();
   }
 
@@ -1048,8 +1101,11 @@ function bindGalleryLightbox() {
       const slug = shot.dataset.caseSlug;
       const index = parseInt(shot.dataset.imageIndex, 10) || 0;
       const caseItem = CASES.find((c) => c.slug === slug);
-      if (caseItem && caseItem.images && caseItem.images.length) {
-        openGalleryLightbox(caseItem.images, index);
+      if (caseItem) {
+        const displayImages = getDisplayImages(caseItem);
+        if (displayImages.length) {
+          openGalleryLightbox(displayImages, index);
+        }
       }
     }
 
