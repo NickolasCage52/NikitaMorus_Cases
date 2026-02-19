@@ -1,0 +1,12 @@
+{
+  "name": "ai-cases-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static premium cases landing page",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "dev": "node server.js --root dist",
+    "start": "node server.js --root dist",
+    "preview": "node server.js --root dist"
+  }
+}
